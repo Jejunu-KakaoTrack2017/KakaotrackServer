@@ -4,19 +4,19 @@ package model;
  * Created by replay on 2017. 2. 14..
  */
 public class WordMeanModel {
-    private final long word;
-    private final long wordmean;
+    private final String word;
+    private final String wordmean;
 
-    public WordMeanModel(long word, long wordmean) {
+    public WordMeanModel(String word, String wordmean) {
         this.word = word;
         this.wordmean = wordmean;
     }
 
-    public long getWord() {
+    public String getWord() {
         return word;
     }
 
-    public long getWordmean() {
+    public String getWordmean() {
         return wordmean;
     }
 }

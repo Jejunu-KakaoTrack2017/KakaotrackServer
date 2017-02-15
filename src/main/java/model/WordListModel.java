@@ -7,18 +7,18 @@ import java.util.List;
  */
 public class WordListModel {
     private final long url;
-    private final List<WordListModel> wordListModel;
+    private final List<WordMeanModel> wordMeanModels;
 
-    public WordListModel(long url, List<WordListModel> wordListModel) {
+    public WordListModel(long url, List<WordMeanModel> wordMeanModels) {
         this.url = url;
-        this.wordListModel = wordListModel;
+        this.wordMeanModels = wordMeanModels;
     }
 
     public long getUrl() {
         return url;
     }
 
-    public List<WordListModel> getWordListModel() {
-        return wordListModel;
+    public List<WordMeanModel> getWordMeanModels() {
+        return wordMeanModels;
     }
 }
