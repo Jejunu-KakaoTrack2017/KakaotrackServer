@@ -4,15 +4,15 @@ package model;
  * Created by replay on 2017. 2. 14..
  */
 public class WordCountModel {
-    private final long word;
+    private final String word;
     private final int wordcount;
 
-    public WordCountModel(long word, int wordcount) {
+    public WordCountModel(String word, int wordcount) {
         this.word = word;
         this.wordcount = wordcount;
     }
 
-    public long getWord() {
+    public String getWord() {
         return word;
     }
 

@@ -22,9 +22,19 @@ public class test {
         String paramName = "wordList";
 
         // 파라미터 이름에 대한 값
-        String paramValue = "[{\"word\":apple," +
-                                "\"count\":10"+
-                                "}]";
+        String paramValue = "{\"Action\":\"1\"," +
+                            "\"Url\":\"http://stackoverflow.com/questions/13703807/post-in-restful-web-service\"," +
+                            "\"WordList\":[" +
+                                "{" +
+                                    "\"word\":\"apple\"," +
+                                    "\"count\":\"10\"" +
+                                "}," +
+                                "{" +
+                                    "\"word\":\"book\"," +
+                                    "\"count\":\"8\"" +
+                                "}"+
+                                "]" +
+                            "}";
 
 
         try {
