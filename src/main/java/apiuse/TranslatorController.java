@@ -1,5 +1,6 @@
 package apiuse;
 
+import model.TranslateModel;
 import model.WordCountModel;
 import model.WordMeanModel;
 import org.json.simple.JSONArray;
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class TranslatorController {
     List<WordMeanModel> wordMeanModels = new ArrayList<>();
+    NaverTranslator naverTranslator = new NaverTranslator();
 
 
     public List<WordMeanModel> translateWord(List<WordCountModel> wordCountModels) {
 
-        NaverTranslator naverTranslator = new NaverTranslator();
 
         for (int i = 0; i < wordCountModels.size(); i++) {
             String word = wordCountModels.get(i).getWord();
@@ -36,6 +37,19 @@ public class TranslatorController {
         }
 
         return wordMeanModels;
+    }
+
+    public String translateSentence(String sentence){
+        TranslateModel translateModel;
+
+        String resultjson = naverTranslator.getNaverTranslate(sentence);
+        System.out.println(resultjson);
+
+        String mean = parse(resultjson);
+        System.out.println(mean);
+
+       return mean;
+
     }
 
     private String parse(String resultString) {

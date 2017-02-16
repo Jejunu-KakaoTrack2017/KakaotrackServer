@@ -2,6 +2,7 @@ package kakaotrack;
 
 import apiuse.TranslatorController;
 import kakaotrackparser.RequestMsgParser;
+import kakaotrackparser.TranslateRqstParser;
 import model.TranslateModel;
 import model.WordCountModel;
 import model.WordListModel;
@@ -35,17 +36,22 @@ public class WordController {
         wordListModelList = new WordListModel("1번동작", wordMeanModelList);
 
         return wordListModelList;
-        //TODO
-
     }
 
 
     @RequestMapping("/getTranslate")
-    public void translateModel(@RequestParam(value = "search") String search){
-//        TranslateModel translateModel;
+    public TranslateModel translateModel(@RequestParam(value = "search") String search){
+        TranslateModel translateModel;
 
-        //TODO
 
-//        return translateModel;
+        TranslateRqstParser translateRqstParser = new TranslateRqstParser();
+        String rqst = translateRqstParser.parse(search);
+
+        TranslatorController translatorController = new TranslatorController();
+        String mean = translatorController.translateSentence(rqst);
+
+        translateModel = new TranslateModel("2번동작", mean);
+
+        return translateModel;
     }
 }
