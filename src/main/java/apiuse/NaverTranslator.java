@@ -18,10 +18,6 @@ public class NaverTranslator {
 
     private HttpURLConnection con;
 
-    public NaverTranslator() {
-        con = getNaverApiConnection();
-    }
-
     private HttpURLConnection getNaverApiConnection() {
 
         try {
@@ -31,6 +27,7 @@ public class NaverTranslator {
             con.setRequestMethod("POST");
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+            con.setDoOutput(true);
 
             return con;
         } catch (Exception e) {
@@ -40,12 +37,14 @@ public class NaverTranslator {
         }
     }
 
+
     public String getNaverTranslate(String input) {
 
         try {
             String text = URLEncoder.encode(input, "UTF-8");
             String postParams = "source=en&target=ko&text=" + text;
-            con.setDoOutput(true);
+
+            con = getNaverApiConnection();
 
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);
@@ -68,9 +67,8 @@ public class NaverTranslator {
             while ((inputLine = bufferedReader.readLine()) != null) {
                 output.append(inputLine);
             }
-            bufferedReader.close();
 
-            System.out.println(output.toString());
+            bufferedReader.close();
 
             return output.toString();
         } catch (Exception e) {

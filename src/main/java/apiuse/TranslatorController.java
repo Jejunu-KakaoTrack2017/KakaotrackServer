@@ -18,42 +18,41 @@ import java.util.List;
 public class TranslatorController {
     List<WordMeanModel> wordMeanModels = new ArrayList<>();
 
+
     public List<WordMeanModel> translateWord(List<WordCountModel> wordCountModels) {
+
         NaverTranslator naverTranslator = new NaverTranslator();
 
         for (int i = 0; i < wordCountModels.size(); i++) {
             String word = wordCountModels.get(i).getWord();
 
             String resultjson = naverTranslator.getNaverTranslate(word);
+            System.out.println(resultjson);
 
             String mean = parse(resultjson);
+            System.out.println(mean);
 
             wordMeanModels.add(new WordMeanModel(word, mean));
-
         }
 
         return wordMeanModels;
     }
 
     private String parse(String resultString) {
-//        String resultString1 = " {\"message\":{\"@type\":\"response\",\"@service\":\"naverservice.labs.api\",\"@version\":\"1.0.0\",\"result\":{\"translatedText\":\" 때 패배를 알고 있었던 승리는 더욱 달콤하다.\"}}}";
-
-        String mean = null;
 
         try {
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObj = null;
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(resultString);
+            JSONObject translatedInfo = (JSONObject) jsonObject.get("message");
+            JSONObject translatedKorean = (JSONObject) translatedInfo.get("result");
 
-            jsonObj = (JSONObject) jsonParser.parse(resultString);
-            JSONObject jsontmp = (JSONObject) jsonObj.get("message");
-            JSONObject jsonresult = (JSONObject) jsontmp.get("result");
+            String mean = translatedKorean.get("translatedText").toString();
 
-
-            mean = (String) jsonresult.get("translatedText");
-
+            return mean;
         } catch (ParseException e) {
             e.printStackTrace();
+
+            return "뭐지?";
         }
-        return mean;
     }
 }

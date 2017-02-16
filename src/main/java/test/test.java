@@ -45,7 +45,6 @@ public class test {
             urlConnection = url.openConnection();
             urlConnection.setDoOutput(true);
 
-
             printByOutputStream(urlConnection.getOutputStream(), paramName + "=" + paramValue);
             printByInputStream(urlConnection.getInputStream());
 
