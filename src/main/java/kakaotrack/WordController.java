@@ -20,10 +20,11 @@ import java.util.List;
 public class WordController {
 
     @RequestMapping("/getmean")
-    public List<WordMeanModel> wordListModel(@RequestParam(value = "wordList") String wordlist){
+    public WordListModel wordListModel(@RequestParam(value = "wordList") String wordlist){
 
         List<WordCountModel> wordCountModelList;
         List<WordMeanModel> wordMeanModelList;
+        WordListModel wordListModelList;
 
         RequestMsgParser requestMsgParser = new RequestMsgParser();
         wordCountModelList = requestMsgParser.parse(wordlist);
@@ -31,7 +32,9 @@ public class WordController {
         TranslatorController translatorController = new TranslatorController();
         wordMeanModelList = translatorController.translateWord(wordCountModelList);
 
-        return wordMeanModelList;
+        wordListModelList = new WordListModel("1번동작", wordMeanModelList);
+
+        return wordListModelList;
         //TODO
 
     }

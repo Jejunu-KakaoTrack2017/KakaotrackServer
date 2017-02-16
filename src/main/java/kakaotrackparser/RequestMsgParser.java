@@ -24,13 +24,13 @@ public class RequestMsgParser {
         try {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObj = (JSONObject) jsonParser.parse(wordlist);
-            JSONArray memberArray = (JSONArray) jsonObj.get("WordList");
+            JSONArray memberArray = (JSONArray) jsonObj.get("wordlist");
 
             for(int i=0 ; i<memberArray.size() ; i++){
                 JSONObject tempObj = (JSONObject) memberArray.get(i);
                 String word = (String) tempObj.get("word");
-                String S_count = (String) tempObj.get("count");
-                int count = Integer.parseInt(S_count);
+                long S_count = (long) tempObj.get("count");
+                int count = (int) S_count;
 
                 wordCountModels.add(new WordCountModel(word, count));
 

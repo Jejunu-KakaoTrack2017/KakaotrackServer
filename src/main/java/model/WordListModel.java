@@ -6,16 +6,16 @@ import java.util.List;
  * Created by replay on 2017. 2. 14..
  */
 public class WordListModel {
-    private final long url;
+    private final String action;
     private final List<WordMeanModel> wordMeanModels;
 
-    public WordListModel(long url, List<WordMeanModel> wordMeanModels) {
-        this.url = url;
+    public WordListModel(String action, List<WordMeanModel> wordMeanModels) {
+        this.action = action;
         this.wordMeanModels = wordMeanModels;
     }
 
-    public long getUrl() {
-        return url;
+    public String getAction() {
+        return action;
     }
 
     public List<WordMeanModel> getWordMeanModels() {
